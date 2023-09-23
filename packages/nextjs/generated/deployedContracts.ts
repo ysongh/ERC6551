@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         ERC6551Account: {
-          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+          address: "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e",
           abi: [
             {
               inputs: [
@@ -156,7 +156,7 @@ const contracts = {
           ],
         },
         ERC6551Registry: {
-          address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+          address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
           abi: [
             {
               inputs: [],
@@ -292,7 +292,7 @@ const contracts = {
           ],
         },
         OnChainBoardGame: {
-          address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+          address: "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0",
           abi: [
             {
               inputs: [
@@ -350,6 +350,82 @@ const contracts = {
             },
             {
               inputs: [],
+              name: "getHotels",
+              outputs: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "id",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "string",
+                      name: "level",
+                      type: "string",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "cost",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "address",
+                      name: "owner",
+                      type: "address",
+                    },
+                  ],
+                  internalType: "struct OnChainBoardGame.Hotel[]",
+                  name: "",
+                  type: "tuple[]",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              name: "hotels",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+                {
+                  internalType: "string",
+                  name: "level",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "cost",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "owner",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "moveNFT",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [],
               name: "owner",
               outputs: [
                 {
@@ -388,6 +464,25 @@ const contracts = {
                   internalType: "address",
                   name: "",
                   type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              name: "tbaNFT",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
                 },
               ],
               stateMutability: "view",

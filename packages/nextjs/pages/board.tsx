@@ -16,6 +16,17 @@ const Board: NextPage = () => {
     args: [address],
   });
 
+  const { data: hotels } = useScaffoldContractRead({
+    contractName: "OnChainBoardGame",
+    functionName: "getHotels",
+  });
+
+  const { data: you } = useScaffoldContractRead({
+    contractName: "OnChainBoardGame",
+    functionName: "tbaNFT",
+    args: [tbaAddress],
+  });
+
   const { writeAsync: createAccount } = useScaffoldContractWrite({
     contractName: "OnChainBoardGame",
     functionName: "createTokenBoundAccount",
@@ -27,6 +38,14 @@ const Board: NextPage = () => {
       BigInt("1"),
       "0x",
     ],
+    onBlockConfirmation: txnReceipt => {
+      console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
+
+  const { writeAsync: roll } = useScaffoldContractWrite({
+    contractName: "OnChainBoardGame",
+    functionName: "moveNFT",
     onBlockConfirmation: txnReceipt => {
       console.log("📦 Transaction blockHash", txnReceipt.blockHash);
     },
@@ -57,26 +76,21 @@ const Board: NextPage = () => {
                 </button>
                 <button
                   className="py-2 px-16 mb-1 mt-3 mr-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
-                  onClick={() => console.log("play")}
-                >
-                  Play
-                </button>
-                <button
-                  className="py-2 px-16 mb-1 mt-3 mr-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
-                  onClick={() => console.log("roll")}
+                  onClick={() => roll()}
                 >
                   Roll
                 </button>
                 <div className="relative mt-3" style={{ width: "450px", height: "600px" }}>
-                  {BOARD_STYLES &&
-                    BOARD_STYLES.map((item, index) => (
+                  {hotels &&
+                    hotels.map((item, index) => (
                       <div
                         key={index}
                         className={
                           "w-20 h-20 border border-gray-300 font-bold bg-white" + " " + BOARD_STYLES[index] || "grid-1"
                         }
                       >
-                        {item}
+                        {item.id.toString()}
+                        {you?.toString() === item.id.toString() && <p className="my-0">You</p>}
                       </div>
                     ))}
                 </div>
