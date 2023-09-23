@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         ERC6551Account: {
-          address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
           abi: [
             {
               inputs: [
@@ -156,7 +156,7 @@ const contracts = {
           ],
         },
         ERC6551Registry: {
-          address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+          address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
           abi: [
             {
               inputs: [],
@@ -288,6 +288,121 @@ const contracts = {
               ],
               stateMutability: "nonpayable",
               type: "function",
+            },
+          ],
+        },
+        OnChainBoardGame: {
+          address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+          abi: [
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "_owner",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "_registryAddress",
+                  type: "address",
+                },
+              ],
+              stateMutability: "nonpayable",
+              type: "constructor",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "_implementation",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "_chainId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "_tokenContract",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "_tokenId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "_salt",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bytes",
+                  name: "_initData",
+                  type: "bytes",
+                },
+              ],
+              name: "createTokenBoundAccount",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "owner",
+              outputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "registry",
+              outputs: [
+                {
+                  internalType: "contract ERC6551Registry",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              name: "tbaList",
+              outputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "withdraw",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              stateMutability: "payable",
+              type: "receive",
             },
           ],
         },

@@ -45,12 +45,12 @@ export const Header = () => {
           Debug Contracts
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink href="/example-ui">
-          <SparklesIcon className="h-4 w-4" />
-          Example UI
+      <li>
+        <NavLink href="/board">
+          <BugAntIcon className="h-4 w-4" />
+          Board
         </NavLink>
-      </li> */}
+      </li>
       <li>
         <NavLink href="/blockexplorer">
           <MagnifyingGlassIcon className="h-4 w-4" />

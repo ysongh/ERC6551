@@ -33,6 +33,15 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
+  const registryContract = await hre.ethers.getContract("ERC6551Registry", deployer);
+
+  await deploy("OnChainBoardGame", {
+    from: deployer,
+    args: [deployer, registryContract.address],
+    log: true,
+    autoMine: true,
+  });
+
   // Get the deployed contract
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
 };
