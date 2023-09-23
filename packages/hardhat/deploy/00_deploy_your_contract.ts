@@ -35,6 +35,12 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   const registryContract = await hre.ethers.getContract("ERC6551Registry", deployer);
 
+  await deploy("HotelNFT", {
+    from: deployer,
+    log: true,
+    autoMine: true,
+  });
+
   await deploy("OnChainBoardGame", {
     from: deployer,
     args: [deployer, registryContract.address],
