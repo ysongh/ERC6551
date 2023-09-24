@@ -43,9 +43,17 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   const hotelNFTContract = await hre.ethers.getContract("HotelNFT", deployer);
 
+  await deploy("RoomToken", {
+    from: deployer,
+    log: true,
+    autoMine: true,
+  });
+
+  const roomTokenContract = await hre.ethers.getContract("RoomToken", deployer);
+
   await deploy("OnChainBoardGame", {
     from: deployer,
-    args: [deployer, registryContract.address, hotelNFTContract.address],
+    args: [deployer, registryContract.address, hotelNFTContract.address, roomTokenContract.address],
     log: true,
     autoMine: true,
   });

@@ -53,6 +53,14 @@ const Board: NextPage = () => {
     },
   });
 
+  const { writeAsync: upgradeHotel } = useScaffoldContractWrite({
+    contractName: "OnChainBoardGame",
+    functionName: "upgradeHotel",
+    onBlockConfirmation: txnReceipt => {
+      console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
+
   return (
     <>
       <MetaHeader
@@ -86,6 +94,12 @@ const Board: NextPage = () => {
                   onClick={() => buyHotel()}
                 >
                   Buy Hotel
+                </button>
+                <button
+                  className="py-2 px-16 mb-1 mt-3 mr-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
+                  onClick={() => upgradeHotel()}
+                >
+                  Upgrade Hotel
                 </button>
                 <div className="relative mt-3" style={{ width: "450px", height: "600px" }}>
                   {hotels &&

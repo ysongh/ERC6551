@@ -3,10 +3,12 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import "./ERC6551Registry.sol";
 import "./HotelNFT.sol";
+import "./RoomToken.sol";
 
 contract OnChainBoardGame {
   ERC6551Registry public registry;
   HotelNFT public hotelNFT;
+  RoomToken public roomToken;
 
   Hotel[] public hotels;
   address public immutable owner;
@@ -21,10 +23,11 @@ contract OnChainBoardGame {
     address owner;
   }
 
-  constructor(address _owner, address _registryAddress, address _hotelNFTAddress) {
+  constructor(address _owner, address _registryAddress, address _hotelNFTAddress, address _roomTokenAddress) {
     owner = _owner;
     registry = ERC6551Registry(_registryAddress);
     hotelNFT = HotelNFT(_hotelNFTAddress);
+    roomToken = RoomToken(_roomTokenAddress);
 
     for (uint256 id = 0; id < 20; id++) {
       hotels.push(Hotel(id, "hotel", 0, address(0)));
@@ -64,6 +67,12 @@ contract OnChainBoardGame {
     hotels[player[msg.sender]].owner = msg.sender;
     properties[msg.sender].push(player[msg.sender]);
     hotelNFT.mintHotelNFT(hotels[player[msg.sender]].id, msg.sender, "");
+  }
+
+  function upgradeHotel() public {
+    Hotel memory currentHotel = hotels[player[msg.sender]];
+    address tbaAddress = tbaList[currentHotel.id];
+    roomToken.mint(tbaAddress, 1000000000000000000);
   }
 
   modifier isOwner() {
