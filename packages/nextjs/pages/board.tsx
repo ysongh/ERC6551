@@ -72,55 +72,51 @@ const Board: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </MetaHeader>
       <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
-        <div className="mt-5">
-          <div>
-            <div className="flex">
-              <div>
-                <h2 className="mt-4 text-3xl">Board</h2>
-                <button
-                  className="py-2 px-16 mb-10 mt-3 bg-blue-500 rounded baseline hover:bg-blue-300 disabled:opacity-50"
-                  onClick={() => createAccount()}
-                >
-                  Create Token Bound Account
-                </button>
-                <button
-                  className="py-2 px-16 mb-1 mt-3 mr-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
-                  onClick={() => roll()}
-                >
-                  Roll
-                </button>
-                <button
-                  className="py-2 px-16 mb-1 mt-3 mr-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
-                  onClick={() => buyHotel()}
-                >
-                  Buy Hotel
-                </button>
-                <button
-                  className="py-2 px-16 mb-1 mt-3 mr-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
-                  onClick={() => upgradeHotel()}
-                >
-                  Upgrade Hotel
-                </button>
-                <div className="relative mt-3" style={{ width: "450px", height: "600px" }}>
-                  {hotels &&
-                    hotels.map((item, index) => (
-                      <div
-                        key={index}
-                        className={
-                          "w-20 h-20 border border-gray-300 font-bold bg-white" + " " + BOARD_STYLES[index] || "grid-1"
-                        }
-                      >
-                        {item.id.toString()}
-                        {you?.toString() === item.id.toString() && <p className="my-0">You</p>}
-                        {item.owner !== "0x0000000000000000000000000000000000000000" && (
-                          <Address address={item.owner} />
-                        )}
-                      </div>
-                    ))}
-                </div>
+        <div className="flex flex-col items-center">
+          <h2 className="mt-4 text-3xl">Actions</h2>
+          <button
+            className="py-2 px-16 mt-2 mb-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
+            style={{ width: "340px" }}
+            onClick={() => roll()}
+          >
+            Roll
+          </button>
+          <button
+            className="py-2 px-16 mb-3  bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
+            style={{ width: "340px" }}
+            onClick={() => buyHotel()}
+          >
+            Buy Hotel
+          </button>
+          <button
+            className="py-2 px-16 mb-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
+            style={{ width: "340px" }}
+            onClick={() => createAccount()}
+          >
+            Create Token Bound Account
+          </button>
+          <button
+            className="py-2 px-16 mb-3  bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
+            style={{ width: "340px" }}
+            onClick={() => upgradeHotel()}
+          >
+            Upgrade Hotel
+          </button>
+        </div>
+        <div className="relative mt-16" style={{ width: "450px", height: "600px" }}>
+          {hotels &&
+            hotels.map((item, index) => (
+              <div
+                key={index}
+                className={
+                  "w-20 h-20 border border-gray-300 font-bold bg-white" + " " + BOARD_STYLES[index] || "grid-1"
+                }
+              >
+                {item.id.toString()}
+                {you?.toString() === item.id.toString() && <p className="my-0">You</p>}
+                {item.owner !== "0x0000000000000000000000000000000000000000" && <Address address={item.owner} />}
               </div>
-            </div>
-          </div>
+            ))}
         </div>
       </div>
     </>
