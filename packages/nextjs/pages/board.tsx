@@ -11,12 +11,6 @@ const CHAIN_ID = 31337;
 const Board: NextPage = () => {
   const { address } = useAccount();
 
-  const { data: tbaAddress } = useScaffoldContractRead({
-    contractName: "OnChainBoardGame",
-    functionName: "tbaList",
-    args: [address],
-  });
-
   const { data: hotels } = useScaffoldContractRead({
     contractName: "OnChainBoardGame",
     functionName: "getHotels",
@@ -35,7 +29,6 @@ const Board: NextPage = () => {
       deployedContracts[CHAIN_ID][0].contracts.ERC6551Account.address,
       BigInt("1"),
       deployedContracts[CHAIN_ID][0].contracts.OnChainBoardGame.address,
-      BigInt("0"),
       BigInt("1"),
       "0x",
     ],
@@ -76,7 +69,6 @@ const Board: NextPage = () => {
             <div className="flex">
               <div>
                 <h2 className="mt-4 text-3xl">Board</h2>
-                <p>{tbaAddress}</p>
                 <button
                   className="py-2 px-16 mb-10 mt-3 bg-blue-500 rounded baseline hover:bg-blue-300 disabled:opacity-50"
                   onClick={() => createAccount()}

@@ -10,7 +10,7 @@ contract OnChainBoardGame {
 
   Hotel[] public hotels;
   address public immutable owner;
-  mapping(address => address) public tbaList;
+  mapping(uint => address) public tbaList;
   mapping(address => uint256) public player;
   mapping(address => uint256[]) public properties;
 
@@ -43,12 +43,12 @@ contract OnChainBoardGame {
     address _implementation,
     uint256 _chainId,
     address _tokenContract,
-    uint256 _tokenId,
     uint256 _salt,
     bytes calldata _initData
   ) external {
-    address newTBA = registry.createAccount(_implementation, _chainId, _tokenContract, _tokenId, _salt, _initData);
-    tbaList[msg.sender] = newTBA;
+    Hotel memory currentHotel = hotels[player[msg.sender]];
+    address newTBA = registry.createAccount(_implementation, _chainId, _tokenContract, currentHotel.id, _salt, _initData);
+    tbaList[currentHotel.id] = newTBA;
   }
 
   function moveNFT() public {
