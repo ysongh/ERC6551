@@ -26,7 +26,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "stylusTestnet",
+  defaultNetwork: "chiado",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer

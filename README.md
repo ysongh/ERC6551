@@ -3,6 +3,15 @@ A on-chain board game where you buy, build, and upgrade hotels
 
 ## Contracts
 
+### Chiado Testnet
+- OnChainBoardGame = [0xB2e0621213dD162a1BE0eAf42452306EF2Af66dc](https://gnosis-chiado.blockscout.com/address/0xB2e0621213dD162a1BE0eAf42452306EF2Af66dc)
+- ERC6551Account = [0x8ec0c378c238D16487c845991Bfd3FD501bDEaF5](https://gnosis-chiado.blockscout.com/address/0x8ec0c378c238D16487c845991Bfd3FD501bDEaF5)
+- ERC6551Registry = [0xFda2FCAB7c8c2FDB3Ef69C37Ee94f1e7A94f0eD3](https://gnosis-chiado.blockscout.com/address/0xFda2FCAB7c8c2FDB3Ef69C37Ee94f1e7A94f0eD3)
+- HotelNFT = [0x3060F1B52BE664756757ea787c08b252Ca85F303](https://gnosis-chiado.blockscout.com/address/0x3060F1B52BE664756757ea787c08b252Ca85F303)
+- RoomToken = [0x5a7830058C99b788e84a33Dd70052243640904f5](https://gnosis-chiado.blockscout.com/address/0x5a7830058C99b788e84a33Dd70052243640904f5)
+
+-[Tweet](https://x.com/ysongit/status/1705928117229945059?s=46&t=6juFgpOrhLPyy99O_7_7pQ)
+
 ### Stylus Testnet
 - OnChainBoardGame = [0xB2e0621213dD162a1BE0eAf42452306EF2Af66dc](https://stylus-testnet-explorer.arbitrum.io/address/0xB2e0621213dD162a1BE0eAf42452306EF2Af66dc)
 - ERC6551Account = [0x8ec0c378c238D16487c845991Bfd3FD501bDEaF5](https://stylus-testnet-explorer.arbitrum.io/address/0x8ec0c378c238D16487c845991Bfd3FD501bDEaF5)
