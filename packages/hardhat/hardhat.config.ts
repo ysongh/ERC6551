@@ -26,7 +26,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "scrollTestnet",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -112,6 +112,10 @@ const config: HardhatUserConfig = {
     },
     baseGoerli: {
       url: "https://goerli.base.org",
+      accounts: [deployerPrivateKey],
+    },
+    scrollTestnet: {
+      url: "https://alpha-rpc.scroll.io/l2",
       accounts: [deployerPrivateKey],
     },
   },
