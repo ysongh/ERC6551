@@ -8,7 +8,8 @@ contract OnChainBoardGame {
   Hotel[] public hotels;
   address public immutable owner;
   mapping(address => address) public tbaList;
-  mapping(address => uint256) public tbaNFT;
+  mapping(address => uint256) public player;
+  mapping(address => uint256[]) public properties;
 
   struct Hotel {
     uint id;
@@ -30,6 +31,10 @@ contract OnChainBoardGame {
     return hotels;
   }
 
+  function getPropertiesByPlayer(address playerAddress) public view returns (uint256[] memory){
+    return properties[playerAddress];
+  }
+
   function createTokenBoundAccount(
     address _implementation,
     uint256 _chainId,
@@ -44,12 +49,16 @@ contract OnChainBoardGame {
 
   function moveNFT() public {
     uint256 randomNumber = uint256(keccak256(abi.encode(block.timestamp, msg.sender))) % 5;
-    address tbaAddress = tbaList[msg.sender];
-    tbaNFT[tbaAddress] += randomNumber + 1;
+    player[msg.sender] += randomNumber + 1;
 
-    if (tbaNFT[tbaAddress] >= 20) {
-      tbaNFT[tbaAddress] = 0;
+    if (player[msg.sender] >= 20) {
+      player[msg.sender] = 0;
     }
+  }
+
+  function buyHotel() public {
+    hotels[player[msg.sender]].owner = msg.sender;
+    properties[msg.sender].push(player[msg.sender]);
   }
 
   modifier isOwner() {

@@ -2,6 +2,7 @@ import { BOARD_STYLES } from "../components/board/style";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { MetaHeader } from "~~/components/MetaHeader";
+import { Address } from "~~/components/scaffold-eth";
 import deployedContracts from "~~/generated/deployedContracts";
 import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
@@ -23,8 +24,8 @@ const Board: NextPage = () => {
 
   const { data: you } = useScaffoldContractRead({
     contractName: "OnChainBoardGame",
-    functionName: "tbaNFT",
-    args: [tbaAddress],
+    functionName: "player",
+    args: [address],
   });
 
   const { writeAsync: createAccount } = useScaffoldContractWrite({
@@ -51,6 +52,14 @@ const Board: NextPage = () => {
     },
   });
 
+  const { writeAsync: buyHotel } = useScaffoldContractWrite({
+    contractName: "OnChainBoardGame",
+    functionName: "buyHotel",
+    onBlockConfirmation: txnReceipt => {
+      console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
+
   return (
     <>
       <MetaHeader
@@ -69,7 +78,7 @@ const Board: NextPage = () => {
                 <h2 className="mt-4 text-3xl">Board</h2>
                 <p>{tbaAddress}</p>
                 <button
-                  className="py-2 px-16 mb-10 mt-3 bg-green-500 rounded baseline hover:bg-green-300 disabled:opacity-50"
+                  className="py-2 px-16 mb-10 mt-3 bg-blue-500 rounded baseline hover:bg-blue-300 disabled:opacity-50"
                   onClick={() => createAccount()}
                 >
                   Create Token Bound Account
@@ -79,6 +88,12 @@ const Board: NextPage = () => {
                   onClick={() => roll()}
                 >
                   Roll
+                </button>
+                <button
+                  className="py-2 px-16 mb-1 mt-3 mr-3 bg-blue-400 rounded baseline hover:bg-blue-300 disabled:opacity-50"
+                  onClick={() => buyHotel()}
+                >
+                  Buy Hotel
                 </button>
                 <div className="relative mt-3" style={{ width: "450px", height: "600px" }}>
                   {hotels &&
@@ -91,6 +106,9 @@ const Board: NextPage = () => {
                       >
                         {item.id.toString()}
                         {you?.toString() === item.id.toString() && <p className="my-0">You</p>}
+                        {item.owner !== "0x0000000000000000000000000000000000000000" && (
+                          <Address address={item.owner} />
+                        )}
                       </div>
                     ))}
                 </div>

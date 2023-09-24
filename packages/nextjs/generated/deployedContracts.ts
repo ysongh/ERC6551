@@ -682,6 +682,13 @@ const contracts = {
               type: "constructor",
             },
             {
+              inputs: [],
+              name: "buyHotel",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
               inputs: [
                 {
                   internalType: "address",
@@ -757,6 +764,25 @@ const contracts = {
             {
               inputs: [
                 {
+                  internalType: "address",
+                  name: "playerAddress",
+                  type: "address",
+                },
+              ],
+              name: "getPropertiesByPlayer",
+              outputs: [
+                {
+                  internalType: "uint256[]",
+                  name: "",
+                  type: "uint256[]",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
                   internalType: "uint256",
                   name: "",
                   type: "uint256",
@@ -809,6 +835,49 @@ const contracts = {
               type: "function",
             },
             {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              name: "player",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              name: "properties",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
               inputs: [],
               name: "registry",
               outputs: [
@@ -835,25 +904,6 @@ const contracts = {
                   internalType: "address",
                   name: "",
                   type: "address",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "",
-                  type: "address",
-                },
-              ],
-              name: "tbaNFT",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
                 },
               ],
               stateMutability: "view",
