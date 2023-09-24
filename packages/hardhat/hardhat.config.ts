@@ -26,7 +26,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "stylusTestnet",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -116,6 +116,10 @@ const config: HardhatUserConfig = {
     },
     scrollTestnet: {
       url: "https://alpha-rpc.scroll.io/l2",
+      accounts: [deployerPrivateKey],
+    },
+    stylusTestnet: {
+      url: "https://stylus-testnet.arbitrum.io/rpc",
       accounts: [deployerPrivateKey],
     },
   },
