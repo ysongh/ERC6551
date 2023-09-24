@@ -1,9 +1,12 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
+
 import "./ERC6551Registry.sol";
+import "./HotelNFT.sol";
 
 contract OnChainBoardGame {
   ERC6551Registry public registry;
+  HotelNFT public hotelNFT;
 
   Hotel[] public hotels;
   address public immutable owner;
@@ -18,9 +21,10 @@ contract OnChainBoardGame {
     address owner;
   }
 
-  constructor(address _owner, address _registryAddress) {
+  constructor(address _owner, address _registryAddress, address _hotelNFTAddress) {
     owner = _owner;
     registry = ERC6551Registry(_registryAddress);
+    hotelNFT = HotelNFT(_hotelNFTAddress);
 
     for (uint256 id = 0; id < 20; id++) {
       hotels.push(Hotel(id, "hotel", 0, address(0)));
@@ -59,6 +63,7 @@ contract OnChainBoardGame {
   function buyHotel() public {
     hotels[player[msg.sender]].owner = msg.sender;
     properties[msg.sender].push(player[msg.sender]);
+    hotelNFT.mintHotelNFT(hotels[player[msg.sender]].id, msg.sender, "");
   }
 
   modifier isOwner() {

@@ -41,9 +41,11 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
+  const hotelNFTContract = await hre.ethers.getContract("HotelNFT", deployer);
+
   await deploy("OnChainBoardGame", {
     from: deployer,
-    args: [deployer, registryContract.address],
+    args: [deployer, registryContract.address, hotelNFTContract.address],
     log: true,
     autoMine: true,
   });
